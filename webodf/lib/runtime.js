@@ -616,6 +616,10 @@ function BrowserRuntime() {
      * @return {undefined}
      */
     function readFile(path, encoding, callback) {
+        if (encoding === 'base64') {
+          callback(null, path);
+          return;
+        }
         var xhr = createXHR(path, encoding, true);
         function handleResult() {
             var r;
